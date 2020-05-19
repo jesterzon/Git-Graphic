@@ -14,6 +14,7 @@ integration.commit("start");
 var fonctionnalite1 = creerBrancheDeFonctionnalite("f_refonte_moteur_sensibilisation_relance");
 var tache1 = creerBrancheDeTache(fonctionnalite1, "235-evol-popin-sensibilisation-relance-notification-os");
 var tache2 = creerBrancheDeTache(fonctionnalite1, "242-evol-notif-20-2-raf-...-verrouillage-tel");
+var tache3 = creerBrancheDeTache(fonctionnalite1, "257-q4q-3165-evol-notification-app-evolution-de-la-pop-in-de-sensibilisation-et-relance-actuelle");
 var fonctionnalite2 = creerBrancheDeFonctionnalite("f_evolution_notifications");
 var tache5 = creerBrancheDeTache(fonctionnalite2, "2235_mise_a_jour_centre_notifications");
 
