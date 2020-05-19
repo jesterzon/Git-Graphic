@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Git Graphic</title>
+        <!-- swipper -->
+        <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+        <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+        <!-- CSS -->
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;800&display=swap" rel="stylesheet">
+        <!-- GitGraph.js -->
+        <script src="https://cdn.jsdelivr.net/npm/@gitgraph/js"></script>
+    </head>
+    <body>
+        <header>
+            <!-- pagination -->
+            <div class="logo">
+                Git Graphic
+            </div>
+            <div class="swiper-pagination"></div>
+            <a class="aide" href="aide.html">?</a>
+        </header>
+
+        <!-- Slider main container -->
+        <div class="swiper-container">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+                <!----------------------------------------------------------------------------------------------------->
+                <div class="swiper-slide">
+                    <h1 class="titre">Sprint 1 : 01/04/2020 au 21/04/2020</h1>
+                    <div id="graph-container-1"></div>
+                </div>
+                <!----------------------------------------------------------------------------------------------------->
+                <div class="swiper-slide">
+                    <h1 class="titre">Sprint 2 : 22/04/2020 au 12/05/2020</h1>
+                    <div id="graph-container-2"></div>
+                </div>
+                <!----------------------------------------------------------------------------------------------------->
+                <!-- rajouter une slide ici !! -->
+                <!----------------------------------------------------------------------------------------------------->
+            </div>
+            <!-- navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+
+        <!-- initialisation du swiper -->
+        <script>
+            
+            var mySwiper = new Swiper ('.swiper-container', {
+                loop: false,
+                pagination: {
+                el: '.swiper-pagination',
+                },
+                navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+                }
+            })
+            mySwiper.slideTo(mySwiper.slides.length-1, 0, false);
+        </script>
+        <script src="fonctions_gitgraph.js"></script>
+        <script src="sprint1.js"></script>
+        <script src="sprint2.js"></script>
+        <!-- rajouter le sprintX.js ici !! -->
+    </body>
+</html>
