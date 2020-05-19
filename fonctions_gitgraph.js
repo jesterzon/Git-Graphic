@@ -13,7 +13,7 @@ function creerGitGraph(container) {
         template: GitgraphJS.templateExtend("blackarrow", {
             colors: ["black"],
             branch: {
-                spacing: 70,
+                spacing: 60,
                 lineWidth: 3,
                 label: {
                     font: "12pt sans-serif"
