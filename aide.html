@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Git Graphic</title>
+        <!-- swipper -->
+        <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+        <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+        <!-- CSS -->
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;800&display=swap" rel="stylesheet">
+        <!-- GitGraph.js -->
+        <script src="https://cdn.jsdelivr.net/npm/@gitgraph/js"></script>
+        <script src="fonctions_gitgraph.js"></script>
+    </head>
+    <body>
+        <header>
+            <!-- pagination -->
+            <div class="logo">
+                Git Graphic
+            </div>
+            <div class="swiper-pagination"></div>
+            <a class="aide" href="index.html">RETOUR</a>
+        </header>
+
+        <!-- navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+        <!-- Slider main container -->
+        <div class="swiper-container">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="swiper-slide">
+                    <h1 class="titre">AIDE : Sommaire</h1>
+                    <ul>
+                        <li><a onclick="mySwiper.slideTo(1, 300, false);">1 - Préparation des fichiers</a></li>
+                        <li><a onclick="mySwiper.slideTo(2, 300, false);">2 - Initialisation du graph</a></li>
+                        <li><a onclick="mySwiper.slideTo(3, 300, false);">3 - Créer des branches</a></li>
+                        <li><a onclick="mySwiper.slideTo(4, 300, false);">4 - Merger</a></li>
+                        <li><a></a></li>
+                    </ul>
+                </div>
+                <!----------------------------------------------------------------------------------------------------->
+                <div class="swiper-slide">
+                    <h1 class="titre">1 - Préparation des fichiers</h1>
+                    <p>Dans index.html rajouter au niveau des slides (le X est à incrémenter):</p>
+                    <div class="code">
+                        &lt;div class="swiper-slide"&gt;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;h1 class="titre"&gt;TITRE DU SPRINT&lt;/h1&gt;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;div id="graph-container-X"&gt;&lt;/div&gt;<br>
+                        &lt;/div&gt;
+                    </div>
+                    <p>Ce qui aura pour effet de rajouter une slide avec un conteneur pour le nouveau graphique.</p>
+                    <br>
+                    <p>Créer le fichier sprintX.js (X à incrémenter) à la racine.</p>
+                    <br>
+                    <p>Le rajouter dans index.html (en bas) :</p>
+                    <div class="code">
+                        &lt;script src="sprintX.js"&gt;&lt;/script&gt;
+                    </div>
+                    <br>
+                    <p>Il reste plus qu'à mettre à jour régulièrement le fichier sprintX.js (prochaines slides -> )</p>
+                </div>
+                <!----------------------------------------------------------------------------------------------------->
+                <div class="swiper-slide">
+                    <h1 class="titre">2 - Initialisation du graph</h1>
+                    <p>Dans le fichier sprintX.js, instancier le graph dans le conteneur : (incrémenter le X comme précédemment)</p>
+                    <div class="code">
+                        var sprintX = creerGitGraph("graph-container-X");
+                    </div>
+                    <p>Puis créer la branche MASTER : </p>
+                    <div class="code">
+                        var master = creerBrancheMaster(sprintX);
+                    </div>
+                    <br>
+                    <div id="graph-exemple1"></div>
+                    <script>
+                        var sprintX = creerGitGraph("graph-exemple1");
+                        var masterX = creerBrancheMaster(sprintX);
+                    </script>
+                    <br>
+                    <p>Puis créer la branche INTEGRATION : </p>
+                    <div class="code">
+                        var integration = creerBrancheIntegration("integration_app_Y");
+                    </div>
+                    <br>
+                    <div id="graph-exemple2"></div>
+                    <script>
+                        var sprintY = creerGitGraph("graph-exemple2");
+                        var master = creerBrancheMaster(sprintY);
+                        var integration = creerBrancheIntegration("integration_app_Y");
+                    </script>
+
+                </div>
+                <!----------------------------------------------------------------------------------------------------->
+                <div class="swiper-slide">
+                    <h1 class="titre">3 - Créer des branches</h1>
+                    <h2 class="sous-titre">FONCTIONNALITE</h2>
+                    <p>Dans le fichier sprintX.js, à la suite de la branche d'intégration :</p>
+                    <div class="code">
+                        var fonctionnalite1 = creerBrancheDeFonctionnalite("f_nom_de_la_fonctionnalite");
+                    </div>
+                    <br>
+                    <div id="graph-exemple3"></div>
+                    <script>
+                        var sprintY = creerGitGraph("graph-exemple3");
+                        var master = creerBrancheMaster(sprintY);
+                        var integration = creerBrancheIntegration("integration_app_Y");
+                        var fonctionnalite1 = creerBrancheDeFonctionnalite("f_nom_de_la_fonctionnalite");
+                    </script>
+                    <br>
+                    <br>
+                    <h2 class="sous-titre">TACHE</h2>
+                    <p>Dans le fichier sprintX.js, à la suite de la branche de fonctionnalité associée à la tache :</p>
+                    <div class="code">
+                        var tache1 = creerBrancheDeTache(fonctionnalite1, "0000_nom_de_la_tache");
+                    </div>
+                    <br>
+                    <div id="graph-exemple4"></div>
+                    <script>
+                        var sprintY = creerGitGraph("graph-exemple4");
+                        var master = creerBrancheMaster(sprintY);
+                        var integration = creerBrancheIntegration("integration_app_Y");
+                        var fonctionnalite1 = creerBrancheDeFonctionnalite("f_nom_de_la_fonctionnalite");
+                        var tache1 = creerBrancheDeTache(fonctionnalite1, "0000_nom_de_la_tache");
+                    </script>
+                     <br>
+                     <br>
+                     <h2 class="sous-titre">SPRINT</h2>
+                     <p>Dans le fichier sprintX.js, à la suite de toutes les branches de fonctionnalités et de taches :</p>
+                     <div class="code">
+                        var brancheSprint = creerBrancheDeSprint("twenty_r00_s00");
+                     </div>
+                     <br>
+                     <div id="graph-exemple5"></div>
+                     <script>
+                         var sprintY = creerGitGraph("graph-exemple5");
+                         var master = creerBrancheMaster(sprintY);
+                         var integration = creerBrancheIntegration("integration_app_Y");
+                         var fonctionnalite1 = creerBrancheDeFonctionnalite("f_nom_de_la_fonctionnalite");
+                         var tache1 = creerBrancheDeTache(fonctionnalite1, "0000_nom_de_la_tache");
+                         var brancheSprint = creerBrancheDeSprint("twenty_r00_s00");
+                     </script>
+                      <br>
+                      <br>
+                      <h2 class="sous-titre">SPIKE</h2>
+                      <p>Dans le fichier sprintX.js, si une branche de spikes est à créer, la créer après la branche de sprint :</p>
+                      <div class="code">
+                        var brancheSpikes = creerBrancheDeSpikes("spikes_twenty_r00_s00");
+                      </div>
+                      <br>
+                      <div id="graph-exemple6"></div>
+                      <script>
+                          var sprintY = creerGitGraph("graph-exemple6");
+                          var master = creerBrancheMaster(sprintY);
+                          var integration = creerBrancheIntegration("integration_app_Y");
+                          var fonctionnalite1 = creerBrancheDeFonctionnalite("f_nom_de_la_fonctionnalite");
+                          var tache1 = creerBrancheDeTache(fonctionnalite1, "0000_nom_de_la_tache");
+                          var brancheSprint = creerBrancheDeSprint("twenty_r00_s00");
+                          var brancheSpikes = creerBrancheDeSpikes("spikes_twenty_r00_s00");
+                      </script>
+                </div>
+                <!----------------------------------------------------------------------------------------------------->
+                <div class="swiper-slide">
+                    <h1 class="titre">4 - Merger</h1>
+                    <p>Dans le fichier sprintX.js, aprés l'initialisation des branches :</p>
+                    <h2 class="sous-titre">MERGE DE TACHE SUR FONCTIONNALITE</h2>
+                    <div class="code">
+                        fonctionnalite1.merge(tache1);
+                    </div>
+                    <br>
+                    <div id="graph-exemple7"></div>
+                    <script>
+                        var sprintY = creerGitGraph("graph-exemple7");
+                        var master = creerBrancheMaster(sprintY);
+                        var integration = creerBrancheIntegration("integration_app_Y");
+                        var fonctionnalite1 = creerBrancheDeFonctionnalite("f_nom_de_la_fonctionnalite");
+                        var tache1 = creerBrancheDeTache(fonctionnalite1, "0000_nom_de_la_tache");
+                        var brancheSprint = creerBrancheDeSprint("twenty_r00_s00");
+                        fonctionnalite1.merge(tache1);
+                    </script>
+                    <br>
+                    <br>
+                    <h2 class="sous-titre">MERGE DE FONCTIONNALITE SUR BRANCHE DE SPRINT</h2>
+                    <div class="code">
+                        brancheSprint.merge(fonctionnalite1);
+                    </div>
+                    <br>
+                    <div id="graph-exemple8"></div>
+                    <script>
+                        var sprintY = creerGitGraph("graph-exemple8");
+                        var master = creerBrancheMaster(sprintY);
+                        var integration = creerBrancheIntegration("integration_app_Y");
+                        var fonctionnalite1 = creerBrancheDeFonctionnalite("f_nom_de_la_fonctionnalite");
+                        var tache1 = creerBrancheDeTache(fonctionnalite1, "0000_nom_de_la_tache");
+                        var brancheSprint = creerBrancheDeSprint("twenty_r00_s00");
+                        fonctionnalite1.merge(tache1);
+                        brancheSprint.merge(fonctionnalite1);
+                    </script>
+                    <br>
+                    <br>
+                    <h2 class="sous-titre">MERGE DE FONCTIONNALITE SUR BRANCHE D'INTEGRATION (fusion après démo)</h2>
+                    <div class="code">
+                        creerMerge(integration, fonctionnalite1);
+                    </div>
+                    <br>
+                    <div id="graph-exemple9"></div>
+                    <script>
+                        var sprintY = creerGitGraph("graph-exemple9");
+                        var master = creerBrancheMaster(sprintY);
+                        var integration = creerBrancheIntegration("integration_app_Y");
+                        var fonctionnalite1 = creerBrancheDeFonctionnalite("f_nom_de_la_fonctionnalite");
+                        var tache1 = creerBrancheDeTache(fonctionnalite1, "0000_nom_de_la_tache");
+                        var brancheSprint = creerBrancheDeSprint("twenty_r00_s00");
+                        fonctionnalite1.merge(tache1);
+                        brancheSprint.merge(fonctionnalite1);
+                        creerMerge(integration, fonctionnalite1);
+                    </script>
+                </div>
+                </div>
+
+                <!----------------------------------------------------------------------------------------------------->
+            </div>
+        </div>
+
+        <!-- initialisation du swiper -->
+        <script>
+            var mySwiper = new Swiper ('.swiper-container', {
+              loop: false,
+              pagination: {
+                el: '.swiper-pagination',
+              },
+              navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+              }
+            })
+        </script>
+    </body>
+</html>
